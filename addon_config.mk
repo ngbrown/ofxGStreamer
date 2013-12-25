@@ -65,7 +65,10 @@ common:
 	
 	# when parsing the file system looking for include paths exclude this for all or
 	# a specific platform
-    # ADDON_INCLUDES_EXCLUDE =
+	# exclude the subdirectories of the included libraries
+    ADDON_INCLUDES_EXCLUDE += glib-2.0[\\/]%
+    ADDON_INCLUDES_EXCLUDE += gst$[\\/]%
+    ADDON_INCLUDES_EXCLUDE += libxml2[\\/]%
 
 linux:
 	
@@ -90,7 +93,7 @@ vs:
 	ADDON_SOURCES += ../../../libs/openFrameworks/video/ofGstVideoPlayer.cpp
 	ADDON_SOURCES += ../../../libs/openFrameworks/video/ofGstVideoGrabber.h
 	ADDON_SOURCES += ../../../libs/openFrameworks/video/ofGstVideoGrabber.cpp
-	
+
 android/armeabi:	
 	
 android/armeabi-v7a:	
@@ -104,6 +107,9 @@ osx:
 	ADDON_SOURCES += ../../../libs/openFrameworks/video/ofGstVideoPlayer.cpp
 	ADDON_SOURCES += ../../../libs/openFrameworks/video/ofGstVideoGrabber.h
 	ADDON_SOURCES += ../../../libs/openFrameworks/video/ofGstVideoGrabber.cpp
+
+	# use the system includes
+	ADDON_INCLUDES_EXCLUDE += /ofxGStreamer&
     
 ios:
 	ADDON_LDFLAGS = -F/Library/Frameworks -framework GStreamer
@@ -114,6 +120,9 @@ ios:
 	ADDON_SOURCES += ../../../libs/openFrameworks/video/ofGstVideoPlayer.cpp
 	ADDON_SOURCES += ../../../libs/openFrameworks/video/ofGstVideoGrabber.h
 	ADDON_SOURCES += ../../../libs/openFrameworks/video/ofGstVideoGrabber.cpp
+
+	# use the system includes
+	ADDON_INCLUDES_EXCLUDE += /ofxGStreamer%
 	
 	
 
